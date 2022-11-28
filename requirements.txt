@@ -7,3 +7,4 @@ Pillow==9.3.0
 streamlit==1.15.1
 streamlit_option_menu==0.3.2
 streamlit_webrtc==0.44.0
+scikit-learn
