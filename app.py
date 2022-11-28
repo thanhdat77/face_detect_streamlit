@@ -125,7 +125,7 @@ if selected == "Yolo3":
         confidence_threshold = st.slider("Confidence threshold", 0.0, 1.0, 0.5, 0.05)
         # print(image_file.name)
         new_dir = str(uuid.uuid4())+'.jpg'
-        subprocess.run("python object_detection.py  --thr={thr} --input={inp}  --model=model_yolo/yolov3.weights --config=model_yolo/yolov3.cfg --classes=model_yolo/object_detection_classes_yolov3.txt --sdir={sdir} --width=416 --height=416 --scale=0.00392\n".format(thr=confidence_threshold,inp = image_file.name,sdir=new_dir))
+        subprocess.run("python object_detection.py  --thr={thr} --input={inp}  --model=model_yolo/yolov4-tiny.weights --config=model_yolo/yolov4-tiny.cfg --classes=model_yolo/coco.names --sdir={sdir} --width=416 --height=416 --scale=0.00392\n".format(thr=confidence_threshold,inp = image_file.name,sdir=new_dir))
         st.image(load_image(new_dir))
         os.remove(image_file.name)
         os.remove(new_dir)
