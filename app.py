@@ -22,7 +22,7 @@ from typing import List, NamedTuple
 with st.sidebar: 
     selected = option_menu("Chọn model muốn dùng", ["Facebook","Yolo3", 'DNN_opencv'
         ,"DNN_opencv_caffee"], 
-        icons=["archive", "activity","app" ,"app-indicator" ], menu_icon="cast", default_index=0)
+        icons=["archive", "activity","app" ,"app-indicator" ], menu_icon="cast", default_index=1)
 # the facebook page 
 if selected == "Facebook":
     print(selected)
@@ -47,8 +47,13 @@ if selected == "Facebook":
     parser.add_argument('--save', '-s', type=str2bool, default=False, help='Set true to save results. This flag is invalid when using camera.')
     args = parser.parse_args()
 
-    svc = joblib.load('model_face/svc.pkl')
     
+    cache_key = "Facebook"
+    if cache_key in st.session_state:
+        net = st.session_state[cache_key]
+    else:
+        svc = joblib.load('model_face/svc.pkl')
+        st.session_state[cache_key] = svc
     mydict = ['BanGiang', 'ThayDuc']
     def visualize(input, faces, fps, thickness=2):
         if faces[1] is not None:
@@ -635,6 +640,7 @@ if selected == "DNN_opencv_caffee":
         net.setPreferableTarget(args.target)
         outNames = net.getUnconnectedOutLayersNames()
         st.session_state[cache_key] = net
+        
 
     streaming_placeholder = st.empty()
 
