@@ -22,7 +22,7 @@ from typing import List, NamedTuple
 with st.sidebar: 
     selected = option_menu("Chọn model muốn dùng", ["Facebook","Yolo3", 'DNN_opencv'
         ,"DNN_opencv_caffee"], 
-        icons=["archive", "activity","app" ,"app-indicator" ], menu_icon="cast", default_index=1)
+        icons=["archive", "activity","app" ,"app-indicator" ], menu_icon="cast", default_index=0)
 # the facebook page 
 if selected == "Facebook":
     print(selected)
@@ -449,12 +449,12 @@ if selected == "DNN_opencv":
     result_queue = []    
     FW = st.image([])
     cap = cv.VideoCapture(0)
-    cbxCamera = st.checkbox("Camera",key="mocamere1")
-    cbxLabel = st.checkbox("Hiện nhãn", value=True)
-    tblConf = st.table([])
+    cbxCamera1 = st.checkbox("Camera",key="mocamere1")
+    cbxLabel1 = st.checkbox("Hiện nhãn", value=True)
+    tblConf1 = st.table([])
     df = None
-    print(cbxCamera)
-    while cbxCamera:
+    print(cbxCamera1)
+    while cbxCamera1:
         _, frame = cap.read()
         # cap.set(cv.CAP_PROP_ZOOM, 0x8004)
         frame_pre, result_queue = handle_callback(frame, result_queue)
@@ -462,10 +462,10 @@ if selected == "DNN_opencv":
         if len(frame_pre.shape)==2 or len(frame_pre.shape)==3:
             frame_pre = cv.cvtColor(frame_pre, cv.COLOR_BGR2RGB)
             FW.image(frame_pre) 
-            if cbxLabel:
+            if cbxLabel1:
                 result_queue = sorted(result_queue, key = lambda x: x[1])
                 df = pd.DataFrame(result_queue[-2:],columns=( ["name", "confiden"]))
-                tblConf.table(df)
+                tblConf1.table(df)
         
     st.markdown(
         "bài làm deloy detection with streamlit"
