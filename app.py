@@ -54,7 +54,7 @@ if selected == "Facebook":
     else:
         svc = joblib.load('model_face/svc.pkl')
         st.session_state[cache_key] = svc
-    mydict = ['BanGiang', 'ThayDuc']
+    mydict = ['Hieu', 'Trong', 'Trung']
     def visualize(input, faces, fps, thickness=2):
         if faces[1] is not None:
             for idx, face in enumerate(faces[1]):
