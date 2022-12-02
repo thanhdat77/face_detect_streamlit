@@ -1,5 +1,5 @@
-Application use for "# Face Detection" 
-- The application to detect face with your camera with 4 model 
+Application use for **Face Detection**
+- The application to detect face with your camera with _4 model
 + cv2 only
 + yolov4-tiny
 + DNN
