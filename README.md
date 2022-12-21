@@ -7,7 +7,7 @@ Application use for **Face Detection**
 
 * How to use it 
 ```shell
-pip install requirements.txt 
+pip install -r requirements.txt 
 streamlit run app.py
 ```
 
